@@ -26,7 +26,7 @@ async function iniciarBusca() {
     // Filtra pelo título e pelo gênero do filme
     const filmesFiltrados = filmes.filter(filme => 
         filme.titulo.toLowerCase().includes(termoBusca) || 
-        filme["Gênero"].toLowerCase().includes(termoBusca)
+        filme.genero.toLowerCase().includes(termoBusca)
     );
 
     // 3. Renderiza os resultados
@@ -51,7 +51,9 @@ function renderizarCards(listaDeFilmes) {
             <div class="card-content">
                 <h2>${filme.titulo}</h2>
                 <p><strong>Ano:</strong> ${filme.ano}</p>
-                <p><strong>Gênero:</strong> ${filme["Gênero"]}</p>
+                <div class="genre-container">
+                    ${filme.genero.split(', ').map(genre => `<span class="genre-badge">${genre}</span>`).join('')}
+                </div>
                 <a href="${filme.link_oficial}" target="_blank">Ver Detalhes</a>
             </div>
         `;
